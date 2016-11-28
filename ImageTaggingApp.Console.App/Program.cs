@@ -11,9 +11,10 @@ namespace ImageTaggingApp.Console.App {
     public class Program {
         public static void Main(string[] args) {
             //var applicationServices = UnityConfig.GetConfiguredContainer().Resolve<ApplicationServices>();
+            var apiKey = ""; // Enter API key for testing purposes.
             var applicationServices = new ApplicationServices(
                 new DomainServices(
-                    new MicrosoftVisionApi("d052a30785844b52aa36b2a518907366", new VisionServiceClient("d052a30785844b52aa36b2a518907366")),
+                    new MicrosoftVisionApi(apiKey, new VisionServiceClient(apiKey)),
                     new ImageRepository(), new ImageMetadataRepository()));
             var imagePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\nature.jpg";
             applicationServices.Tag(new Image(imagePath));
