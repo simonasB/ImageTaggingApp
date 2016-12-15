@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ImageTaggingApp.Console.App.Domain.Interfaces;
+using ImageTaggingApp.Console.App.Infrastructure.Implementation;
 
 namespace ImageTaggingApp.Console.App.APIs {
     public class GoogleVisionApi : IImageTaggingApi {
@@ -10,7 +10,7 @@ namespace ImageTaggingApp.Console.App.APIs {
             _apiKey = apiKey;
         }
 
-        public Task<IImageMetadata> Tag(IImage image) {
+        public Task<ImageMetadata> Tag(Image image) {
             throw new NotImplementedException();
         }
     }

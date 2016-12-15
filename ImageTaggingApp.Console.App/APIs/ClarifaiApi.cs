@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using ImageTaggingApp.Console.App.Domain.Interfaces;
+using ImageTaggingApp.Console.App.Infrastructure.Implementation;
 
 namespace ImageTaggingApp.Console.App.APIs {
     public class ClarifaiApi : IImageTaggingApi {
@@ -9,7 +9,7 @@ namespace ImageTaggingApp.Console.App.APIs {
             _apiKey = apiKey;
         }
 
-        public Task<IImageMetadata> Tag(IImage image) {
+        public Task<ImageMetadata> Tag(Image image) {
             throw new System.NotImplementedException();
         }
     }

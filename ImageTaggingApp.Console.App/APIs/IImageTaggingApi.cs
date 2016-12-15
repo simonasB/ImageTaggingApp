@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using ImageTaggingApp.Console.App.Domain.Interfaces;
+using ImageTaggingApp.Console.App.Infrastructure.Implementation;
 
 namespace ImageTaggingApp.Console.App.APIs {
     public interface IImageTaggingApi {
-        Task<IImageMetadata> Tag(IImage image);
+        Task<ImageMetadata> Tag(Image image);
     }
 }

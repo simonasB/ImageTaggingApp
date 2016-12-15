@@ -1,20 +1,19 @@
-﻿using ImageTaggingApp.Console.App.Application.Interfaces;
-using ImageTaggingApp.Console.App.APIs;
-using ImageTaggingApp.Console.App.Domain.Interfaces;
+﻿using ImageTaggingApp.Console.App.APIs;
+using ImageTaggingApp.Console.App.Infrastructure.Implementation;
 
 namespace ImageTaggingApp.Console.App.Domain.Implementation {
-    public class DomainServices : IDomainServices {
-        private readonly IImageMetadataRepository _imageMetadataRepository;
-        private readonly IImageRepository _imageRepository;
+    public class DomainServices {
+        private readonly ImageMetadataRepository _imageMetadataRepository;
+        private readonly ImageRepository _imageRepository;
         private readonly IImageTaggingApi _imageTaggingApi;
 
-        public DomainServices(IImageTaggingApi imageTaggingApi, IImageRepository imageRepository, IImageMetadataRepository imageMetadataRepository) {
+        public DomainServices(IImageTaggingApi imageTaggingApi, ImageRepository imageRepository, ImageMetadataRepository imageMetadataRepository) {
             _imageTaggingApi = imageTaggingApi;
             _imageRepository = imageRepository;
             _imageMetadataRepository = imageMetadataRepository;
         }
 
-        public void Tag(IImage image) {
+        public void Tag(Image image) {
             var imageMetadata = _imageTaggingApi.Tag(image).Result;
             //_imageRepository.Add(image);
             //_imageMetadataRepository.Add(imageMetadata.Result);

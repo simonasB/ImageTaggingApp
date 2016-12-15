@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using ImageTaggingApp.Console.App.Domain.Interfaces;
 using ImageTaggingApp.Console.App.Infrastructure.Implementation;
 using Microsoft.ProjectOxford.Vision;
 using Microsoft.ProjectOxford.Vision.Contract;
@@ -16,7 +15,7 @@ namespace ImageTaggingApp.Console.App.APIs {
             _visionServiceClient = visionServiceClient;
         }
 
-        public async Task<IImageMetadata> Tag(IImage image) {
+        public async Task<ImageMetadata> Tag(Image image) {
             var result = await UploadAndGetTagsForImage(image.Path);
             LogAnalysisResult(result);
             return new ImageMetadata(new List<Domain.Implementation.Tag>());
