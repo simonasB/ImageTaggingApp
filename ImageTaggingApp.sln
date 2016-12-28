@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTaggingApp.ClarifaiAPIClient", "ImageTaggingApp.ClarifaiAPIClient\ImageTaggingApp.ClarifaiAPIClient.csproj", "{19A5DBF6-0619-47EF-8988-15E41EAC9B9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTaggingApp.Console.App", "ImageTaggingApp.Console.App\ImageTaggingApp.Console.App.csproj", "{BC78A75D-DFFC-4BB2-84BF-4580DAE0F33A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageTaggingApp.Tests", "ImageTaggingApp.Tests\ImageTaggingApp.Tests.csproj", "{CE8750EF-AB31-4514-B1DE-C76029A3211B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19A5DBF6-0619-47EF-8988-15E41EAC9B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A5DBF6-0619-47EF-8988-15E41EAC9B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A5DBF6-0619-47EF-8988-15E41EAC9B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A5DBF6-0619-47EF-8988-15E41EAC9B9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC78A75D-DFFC-4BB2-84BF-4580DAE0F33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC78A75D-DFFC-4BB2-84BF-4580DAE0F33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC78A75D-DFFC-4BB2-84BF-4580DAE0F33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC78A75D-DFFC-4BB2-84BF-4580DAE0F33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE8750EF-AB31-4514-B1DE-C76029A3211B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE8750EF-AB31-4514-B1DE-C76029A3211B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE8750EF-AB31-4514-B1DE-C76029A3211B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE8750EF-AB31-4514-B1DE-C76029A3211B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
