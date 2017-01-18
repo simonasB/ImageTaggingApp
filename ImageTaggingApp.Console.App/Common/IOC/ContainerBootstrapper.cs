@@ -1,23 +1,32 @@
-﻿using ImageTaggingApp.Console.App.Application.Implementation;
-using ImageTaggingApp.Console.App.APIs;
-using ImageTaggingApp.Console.App.Domain.Implementation;
-using ImageTaggingApp.Console.App.Infrastructure.Implementation;
+﻿using ImageTaggingApp.Console.App.APIs;
+using ImageTaggingApp.Console.App.Commands;
+using ImageTaggingApp.Console.App.Database;
+using ImageTaggingApp.Console.App.Entities;
+using ImageTaggingApp.Console.App.Factories;
+using ImageTaggingApp.Console.App.Services;
 using Microsoft.Practices.Unity;
+using Microsoft.ProjectOxford.Vision;
 
 namespace ImageTaggingApp.Console.App.Common.IOC {
     public class ContainerBootstrapper {
-        // Not sure how to register types correctly. When creating any API object we need to pass API key.
-        // That api key will come from console commands.
-        // Just adding this for proof of concept
         public static void RegisterTypes(IUnityContainer container) {
+            container.RegisterInstance(DocumentStoreHolder.Store);
+
             container
-                .RegisterType<ApplicationServices, ApplicationServices>()
-                .RegisterType<DomainServices, DomainServices>()
-                .RegisterType<IImageTaggingApi, ClarifaiApi>("clarifai")
-                .RegisterType<IImageTaggingApi, GoogleVisionApi>("google")
-                .RegisterType<IImageTaggingApi, MicrosoftVisionApi>("microsoft")
-                .RegisterType<ImageRepository, ImageRepository>()
-                .RegisterType<ImageMetadataRepository, ImageMetadataRepository>();
+                .RegisterType<ICommand, TagCommand>(CommandsNames.Tag)
+                .RegisterType<IImageProcessingFactory, ImageProcessingFactory>()
+                .RegisterType<IImageFilesSearchingService, ImageFilesSearchingService>()
+                .RegisterType<IImageTaggingService, ImageTaggingService>()
+                .RegisterType<IImageTagsSavingToExternalResourcesService, ImageTagsSavingToDatabaseService>(
+                    TagDestinationType.Database.ToString())
+                .RegisterType<IImageTagsSavingToExternalResourcesService, ImageTagsSavingToImageMetadataService>(
+                    TagDestinationType.ImageMetadata.ToString())
+                .RegisterType<IImageTaggingApi, ClarifaiApi>(TaggingAPIType.Clarifai.ToString())
+                .RegisterType<IImageTaggingApi, GoogleVisionApi>(TaggingAPIType.Google.ToString())
+                .RegisterType<IImageTaggingApi, MicrosoftVisionApi>(TaggingAPIType.Microsoft.ToString())
+                .RegisterType<IVisionServiceClient, VisionServiceClient>(new InjectionConstructor(typeof(string)))
+                .RegisterType<IConfigFileDeseralizationService<IConfigFile>, ConfigFileDeseralizationService<MicrosoftConfigFile>>(TaggingAPIType.Microsoft.ToString());
+
         }
     }
 }

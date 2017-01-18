@@ -1,24 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using ImageTaggingApp.Console.App.Infrastructure.Implementation;
+using ImageTaggingApp.Console.App.Entities;
 using Microsoft.ProjectOxford.Vision;
 using Microsoft.ProjectOxford.Vision.Contract;
+using Tag = ImageTaggingApp.Console.App.Entities.Tag;
 
 namespace ImageTaggingApp.Console.App.APIs {
     public class MicrosoftVisionApi : IImageTaggingApi {
-        private readonly string _apiKey;
         private readonly IVisionServiceClient _visionServiceClient;
 
-        public MicrosoftVisionApi(string apiKey, IVisionServiceClient visionServiceClient) {
-            _apiKey = apiKey;
+        public MicrosoftVisionApi(IVisionServiceClient visionServiceClient) {
             _visionServiceClient = visionServiceClient;
         }
 
-        public async Task<ImageMetadata> Tag(Image image) {
-            var result = await UploadAndGetTagsForImage(image.Path);
+        public async Task<ImageMetadata> Tag(string imagePath) {
+            var result = await UploadAndGetTagsForImage(imagePath);
             LogAnalysisResult(result);
-            return new ImageMetadata(new List<Domain.Implementation.Tag>());
+            return new ImageMetadata { Tags = new List<Tag>() };
         }
 
         private async Task<AnalysisResult> UploadAndGetTagsForImage(string imageFilePath) {

@@ -44,12 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ClarifaiClient.cs" />
+    <Compile Include="Api\ClarifaiToken.cs" />
+    <Compile Include="Api\TokenRequestSingleton.cs" />
+    <Compile Include="Internal\DateTimeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Api\" />
     <Folder Include="Dto\" />
-    <Folder Include="Internal\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
