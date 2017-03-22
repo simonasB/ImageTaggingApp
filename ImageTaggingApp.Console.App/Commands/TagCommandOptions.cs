@@ -5,7 +5,7 @@ using ImageTaggingApp.Console.App.APIs;
 using ImageTaggingApp.Console.App.Entities;
 
 namespace ImageTaggingApp.Console.App.Commands {
-    [Verb(CommandsNames.Tag, HelpText = "Tags images using specified arguments.")]
+    [Verb(CommandNames.Tag, HelpText = "Tags images using specified arguments.")]
     public class TagCommandOptions {
         private string _configFilePath;
 
@@ -21,9 +21,13 @@ namespace ImageTaggingApp.Console.App.Commands {
             HelpText = "Where to write tag info. Possible: exif or database.", Default = TagDestinationType.ImageMetadata)]
         public TagDestinationType Destination { get; set; }
 
-        [Option(shortName: 'c', longName: "min_confidence",
+        [Option(shortName: 't', longName: "min_tag_confidence",
             HelpText = "Minimum confidence for label to be saved in tag info", Default = 80)]
-        public double MinConfidence { get; set; }
+        public double MinTagConfidence { get; set; }
+
+        [Option(shortName: 'b', longName: "min_blur_confidence",
+            HelpText = "Minimum confidence for image to be treated like blur.", Default = 80)]
+        public double MinBlurConfidence { get; set; }
 
         [Option(shortName: 'f', longName: "config_file",
             HelpText =

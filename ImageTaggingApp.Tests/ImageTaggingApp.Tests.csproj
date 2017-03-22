@@ -78,7 +78,9 @@
     <Compile Include="ImageFilesSearchingServiceTests_Unit.cs" />
     <Compile Include="ImageTaggingServiceTests_Unit.cs" />
     <Compile Include="ImageTagsSavingToDatabaseServiceTests_Unit.cs" />
+    <Compile Include="MockDatabaseTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagCommandTests_Unit.cs" />
     <Compile Include="TestCategory.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +96,15 @@
       <Project>{BC78A75D-DFFC-4BB2-84BF-4580DAE0F33A}</Project>
       <Name>ImageTaggingApp.Console.App</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\standard.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\nature.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\sharp.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

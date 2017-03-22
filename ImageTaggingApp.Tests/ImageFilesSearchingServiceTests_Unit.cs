@@ -13,7 +13,7 @@ namespace ImageTaggingApp.Tests {
         public void GlobPathSpecifiedIsNullOrWhitespace() {
             var globService = Substitute.For<IGlobService>();
             var imageFilesSearchingService = new ImageFilesSearchingService(globService);
-            Assert.Throws<ArgumentException>(() => imageFilesSearchingService.SearchForImageFilesToBeTagged(null));
+            Assert.Throws<ArgumentException>(() => imageFilesSearchingService.SearchForImageFilesToBeTagged(null, new ProgressBar()));
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace ImageTaggingApp.Tests {
             var globService = Substitute.For<IGlobService>();
             globService.Expand(Arg.Any<string>()).Returns(new string[] {});
             var imageFilesSearchingService = new ImageFilesSearchingService(globService);
-            Assert.Throws<FileNotFoundException>(() => imageFilesSearchingService.SearchForImageFilesToBeTagged(@"C:\a*\*"));
+            Assert.Throws<FileNotFoundException>(() => imageFilesSearchingService.SearchForImageFilesToBeTagged(@"C:\a*\*", new ProgressBar()));
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace ImageTaggingApp.Tests {
             IEnumerable<string> imageFilesToTagExpected = new[] {"a.jpg", "b.jpg", "c.jpg"};
             globService.Expand(Arg.Any<string>()).Returns(imageFilesToTagExpected);
             var imageFilesSearchingService = new ImageFilesSearchingService(globService);
-            var imageFilesToTagActual = imageFilesSearchingService.SearchForImageFilesToBeTagged(@"C:\a*\*");
+            var imageFilesToTagActual = imageFilesSearchingService.SearchForImageFilesToBeTagged(@"C:\a*\*", new ProgressBar());
 
             Assert.That(imageFilesToTagActual, Is.EquivalentTo(imageFilesToTagExpected), "Returned list of file paths from service is incorrect.");
         }

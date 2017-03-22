@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Media.Imaging;
 using ExifLib;
 using ImageTaggingApp.Console.App.Entities;
@@ -12,7 +15,7 @@ namespace ImageTaggingApp.Console.App.Services {
     // Writing is more complex and could not find easy and quick solution. Spent researching a lot time.
     // Need to investigate this aproach more and as it seems now will need to create custom solution  for Writing to Image Metadata.
     public class ImageTagsSavingToImageMetadataService : IImageTagsSavingToExternalResourcesService {
-        public void Save(IEnumerable<Image> taggedImages) {
+        public void Save(BlockingCollection<Image> imagesToSaveToExternalResources, CancellationTokenSource cts, IProgress<double> progressBar) {
             using (ExifReader reader = new ExifReader(@"C:\Users\Simonas\Desktop\ft\IMG_20151103_104951.jpg")) {
                 string result;
                 reader.GetTagValue(ExifTags.Software, out result);
